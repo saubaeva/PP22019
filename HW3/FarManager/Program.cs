@@ -16,7 +16,7 @@ namespace FarManager
         DirectoryInfo directory = null;
         FileSystemInfo currentFs = null;
 
-        public FarManager(string path) //придаем значенние созданным переменным 
+        public FarManager(string path) //придаем значение созданным переменным 
         {
             this.path = path;
             cursor = 0;
@@ -29,19 +29,19 @@ namespace FarManager
         {
             if (cursor == index)
             {
-                Console.BackgroundColor = ConsoleColor.White;
-                Console.ForegroundColor = ConsoleColor.Black;
+                Console.BackgroundColor = ConsoleColor.Red;
+                Console.ForegroundColor = ConsoleColor.White;
                 currentFs = fs;
             }
             else if (fs.GetType() == typeof(DirectoryInfo))
             {
                 Console.BackgroundColor = ConsoleColor.Black;
-                Console.ForegroundColor = ConsoleColor.Green;
+                Console.ForegroundColor = ConsoleColor.White;
             }
             else
             {
                 Console.BackgroundColor = ConsoleColor.Black;
-                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.ForegroundColor = ConsoleColor.Gray;
             }
         }
 
@@ -53,28 +53,45 @@ namespace FarManager
             FileSystemInfo[] fs = directory.GetFileSystemInfos();
             for (int i = 0, k = 0; i < fs.Length; i++)
             {
-                if (ok == false && fs[i].Name[0] == '.')
+                if (ok == false && fs[i].Name[0] == '.') // если есть скрытые то пропускает
                 {
                     continue;
                 }
                 Color(fs[i], k);
+                Console.Write(i+1+".");
                 Console.WriteLine(fs[i].Name);
                 k++;
             }
         }
-        public void Up()
+        public void Up() // функция для создания поднятия курсора вверх
         {
             cursor--;
             if (cursor < 0)
                 cursor = size - 1;
         }
-        public void Down()
+        public void Down() // go to downward 
         {
             cursor++;
             if (cursor == size)
                 cursor = 0;
         }
-
+        public void Opentxt(string path) // function to open the file
+            
+        {
+            Console.BackgroundColor=ConsoleColor.Blue;
+            Console.Clear();
+            StreamReader sr = new StreamReader(path);
+            string s=sr.ReadToEnd();
+            Console.WriteLine(s);
+            ConsoleKeyInfo n = Console.ReadKey();
+                     if (n.Key == ConsoleKey.Backspace)
+                     {
+                        sr.Close();
+                        return;
+                     }
+                     else
+                        Opentxt(path);
+        }
 
         public void Calc() //Изменяет размер массива с дайректориями взависимости скрытых файлов 
         {
@@ -89,7 +106,7 @@ namespace FarManager
         public void Start()// Основная функция где проходит процессы 
         {
             ConsoleKeyInfo ck = Console.ReadKey();
-            while (ck.Key != ConsoleKey.Escape)
+            while (ck.Key != ConsoleKey.Escape)// until button the escape
             {
                 Calc();
                 Show();
@@ -115,6 +132,8 @@ namespace FarManager
                         cursor = 0;
                         path = currentFs.FullName;
                     }
+                    else if(currentFs.Name.EndsWith(".txt"))
+                        Opentxt(currentFs.FullName);
                 }
                 if (ck.Key == ConsoleKey.Backspace)
                 {
@@ -161,9 +180,9 @@ namespace FarManager
     {
         static void Main(string[] args)
         {
-            string path = "C:/Users/User/PP2/HW2/task1";
-            FarManager fm = new FarManager(path);
-            fm.Start();
+            string path = "C:/Users/User/PP2/HW2/task1"; // путь файла
+            FarManager fm = new FarManager(path); 
+            fm.Start();// вызываем функцию
         }
     }
 }
