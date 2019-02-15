@@ -12,3 +12,10 @@ C:\Users\User\HW2\task1\obj\Debug\task1.csprojAssemblyReference.cache
 C:\Users\User\HW2\task1\obj\Debug\task1.csproj.CoreCompileInputs.cache
 C:\Users\User\HW2\task1\obj\Debug\task1.exe
 C:\Users\User\HW2\task1\obj\Debug\task1.pdb
+C:\Users\User\PP2\HW2\task1\bin\Debug\task1.exe.config
+C:\Users\User\PP2\HW2\task1\bin\Debug\task1.exe
+C:\Users\User\PP2\HW2\task1\bin\Debug\task1.pdb
+C:\Users\User\PP2\HW2\task1\obj\Debug\task1.csprojAssemblyReference.cache
+C:\Users\User\PP2\HW2\task1\obj\Debug\task1.csproj.CoreCompileInputs.cache
+C:\Users\User\PP2\HW2\task1\obj\Debug\task1.exe
+C:\Users\User\PP2\HW2\task1\obj\Debug\task1.pdb
